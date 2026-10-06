@@ -2,6 +2,8 @@
 
 Live workspace: <https://iedaejin.github.io/mir-prob-stats-webrarian/>
 
+This workspace runs **`.R` scripts**. Matching `.R` files were extracted from each `.Rmd` for the browser; knitting still needs RStudio or Posit Cloud.
+
 File list (download / knit in RStudio): <https://iedaejin.github.io/mir-prob-stats-r-examples/>
 
 **Course:** Probability and Statistics (for Policy Analysis), MIR, SPEGA, IE University, Term 1, SEP-2026 S-2.  
