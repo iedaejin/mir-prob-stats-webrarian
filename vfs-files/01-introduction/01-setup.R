@@ -18,7 +18,9 @@ R.version.string
 #
 # Course analysis packages:
 # install.packages(c("tidyverse", "devtools", "haven"))
-# library(devtools)
+# if you have not installed the `devtools` package
+# install.packages("devtools")
+# library("devtools")
 # install_github("kosukeimai/qss-package", build_vignettes = TRUE)
 
 # ---------------------------------------------------------------------------
