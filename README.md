@@ -20,3 +20,13 @@ install.packages("httpuv")
 webrarian::bind(".")
 webrarian::reading_room(".")
 ```
+
+## Publishing
+
+GitHub Pages serves the built site from the `gh-pages` branch (copy of `_site/` / `docs/`). After changing the collection:
+
+```r
+webrarian::bind(".")
+```
+
+Then refresh `docs/` from `_site/`, commit on `main`, and update `gh-pages` (for example `git subtree split --prefix docs -b gh-pages` and push).
