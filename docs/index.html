@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>MIR Prob and Stats - R examples</title>
+  <link rel="stylesheet" href="./exlibris-r.8914b174.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23B84130'/%3E%3Cpath d='M9 8h9a5 5 0 0 1 5 5v11H14a5 5 0 0 0-5-5z' fill='%23F8F1E0'/%3E%3C/svg%3E" />
+  <meta property="og:title" content="MIR Prob and Stats - R examples" />
+  <meta name="description" content="Browser R workspace for MIR Probability and Statistics. Prof. Dae-Jin Lee, daelee@faculty.ie.edu, IE University - Scitech." />
+  <meta property="og:description" content="Browser R workspace for MIR Probability and Statistics. Prof. Dae-Jin Lee, daelee@faculty.ie.edu, IE University - Scitech." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+  <script>(function () { try { var root = document.documentElement; if (!root.hasAttribute("data-theme")) { var stored = localStorage.getItem("exlibris-theme:" + location.origin + location.pathname.replace(/\/index\.html$/, "/")); if (stored === "light" || stored === "dark") root.setAttribute("data-theme", stored); } } catch (e) {} })();</script>
+  <style>
+    #webrarian-loading {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    #webrarian-loading.hidden { display: none; }
+    .webrarian-spinner {
+      width: 50px; height: 50px;
+      border: 4px solid #e0e0e0;
+      border-top-color: #2196F3;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #webrarian-title { color: #666666; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; opacity: 0.7; }
+    #webrarian-subtitle { color: #666666; font-size: 28px; font-weight: 600; margin-bottom: 30px; }
+    #webrarian-status { color: #666666; font-size: 14px; opacity: 0.8; }
+  
+    @media (prefers-color-scheme: dark) { :where(:root:not([data-theme="light"])) #webrarian-loading { background: #1e1e1e; } :where(:root:not([data-theme="light"])) .webrarian-spinner { border-color: #444444; border-top-color: #2196F3; } :where(:root:not([data-theme="light"])) #webrarian-title { color: #aaaaaa; } :where(:root:not([data-theme="light"])) #webrarian-subtitle { color: #aaaaaa; } :where(:root:not([data-theme="light"])) #webrarian-status { color: #aaaaaa; } }
+    :where(:root[data-theme="dark"]) #webrarian-loading { background: #1e1e1e; } :where(:root[data-theme="dark"]) .webrarian-spinner { border-color: #444444; border-top-color: #2196F3; } :where(:root[data-theme="dark"]) #webrarian-title { color: #aaaaaa; } :where(:root[data-theme="dark"]) #webrarian-subtitle { color: #aaaaaa; } :where(:root[data-theme="dark"]) #webrarian-status { color: #aaaaaa; }
+  </style>
+</head>
+
+<body>
+  
+  <div id="webrarian-loading">
+    <div id="webrarian-title">Opening Webrarian Project</div>
+    <div id="webrarian-subtitle">MIR Prob and Stats - R examples</div>
+    
+    <div class="webrarian-spinner"></div>
+    <div id="webrarian-status">Loading webR...</div>
+  </div>
+  
+  <div id="root"></div>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <script>window.__VIEWER_CONFIG__ = {"schema-version":1,"engine":"webr","engine-version":"0.6.0","engine-base-url":"https://webr.r-wasm.org/v0.6.0/","project-name":"MIR Prob and Stats - R examples","packages":{"install":["tidyverse"],"repos":[],"repo-url":"https://repo.r-wasm.org"},"files":[{"name":"START-HERE.R","vfs-path":"/home/web_user/START-HERE.R","fetch-path":"vfs-files/START-HERE.R"},{"name":"01-introduction/01-arithmetic.Rmd","vfs-path":"/home/web_user/01-introduction/01-arithmetic.Rmd","fetch-path":"vfs-files/01-introduction/01-arithmetic.Rmd"},{"name":"01-introduction/01-functions.Rmd","vfs-path":"/home/web_user/01-introduction/01-functions.Rmd","fetch-path":"vfs-files/01-introduction/01-functions.Rmd"},{"name":"01-introduction/01-objects.Rmd","vfs-path":"/home/web_user/01-introduction/01-objects.Rmd","fetch-path":"vfs-files/01-introduction/01-objects.Rmd"},{"name":"01-introduction/01-r-basics.R","vfs-path":"/home/web_user/01-introduction/01-r-basics.R","fetch-path":"vfs-files/01-introduction/01-r-basics.R"},{"name":"01-introduction/01-setup.R","vfs-path":"/home/web_user/01-introduction/01-setup.R","fetch-path":"vfs-files/01-introduction/01-setup.R"},{"name":"01-introduction/01-setup.Rmd","vfs-path":"/home/web_user/01-introduction/01-setup.Rmd","fetch-path":"vfs-files/01-introduction/01-setup.Rmd"},{"name":"01-introduction/01-unpop-csv.R","vfs-path":"/home/web_user/01-introduction/01-unpop-csv.R","fetch-path":"vfs-files/01-introduction/01-unpop-csv.R"},{"name":"01-introduction/01-unpop.Rmd","vfs-path":"/home/web_user/01-introduction/01-unpop.Rmd","fetch-path":"vfs-files/01-introduction/01-unpop.Rmd"},{"name":"01-introduction/01-vectors.Rmd","vfs-path":"/home/web_user/01-introduction/01-vectors.Rmd","fetch-path":"vfs-files/01-introduction/01-vectors.Rmd"},{"name":"01-introduction/data/UNpop.csv","vfs-path":"/home/web_user/01-introduction/data/UNpop.csv","fetch-path":"vfs-files/01-introduction/data/UNpop.csv"},{"name":"02-causation/02-potential-outcomes.R","vfs-path":"/home/web_user/02-causation/02-potential-outcomes.R","fetch-path":"vfs-files/02-causation/02-potential-outcomes.R"},{"name":"02-causation/02-resume-csv.R","vfs-path":"/home/web_user/02-causation/02-resume-csv.R","fetch-path":"vfs-files/02-causation/02-resume-csv.R"},{"name":"02-causation/02-resume.Rmd","vfs-path":"/home/web_user/02-causation/02-resume.Rmd","fetch-path":"vfs-files/02-causation/02-resume.Rmd"},{"name":"02-causation/02-social.Rmd","vfs-path":"/home/web_user/02-causation/02-social.Rmd","fetch-path":"vfs-files/02-causation/02-social.Rmd"},{"name":"02-causation/02-subsetting.Rmd","vfs-path":"/home/web_user/02-causation/02-subsetting.Rmd","fetch-path":"vfs-files/02-causation/02-subsetting.Rmd"},{"name":"02-causation/data/resume.csv","vfs-path":"/home/web_user/02-causation/data/resume.csv","fetch-path":"vfs-files/02-causation/data/resume.csv"},{"name":"02-causation/data/social.csv","vfs-path":"/home/web_user/02-causation/data/social.csv","fetch-path":"vfs-files/02-causation/data/social.csv"},{"name":"03-describing-a-single-variable/03-describe.R","vfs-path":"/home/web_user/03-describing-a-single-variable/03-describe.R","fetch-path":"vfs-files/03-describing-a-single-variable/03-describe.R"},{"name":"03-describing-a-single-variable/03-histograms-boxplots.Rmd","vfs-path":"/home/web_user/03-describing-a-single-variable/03-histograms-boxplots.Rmd","fetch-path":"vfs-files/03-describing-a-single-variable/03-histograms-boxplots.Rmd"},{"name":"03-describing-a-single-variable/03-summaries.Rmd","vfs-path":"/home/web_user/03-describing-a-single-variable/03-summaries.Rmd","fetch-path":"vfs-files/03-describing-a-single-variable/03-summaries.Rmd"},{"name":"03-describing-a-single-variable/03-variable-types.Rmd","vfs-path":"/home/web_user/03-describing-a-single-variable/03-variable-types.Rmd","fetch-path":"vfs-files/03-describing-a-single-variable/03-variable-types.Rmd"},{"name":"03-describing-a-single-variable/data/country_indicators.csv","vfs-path":"/home/web_user/03-describing-a-single-variable/data/country_indicators.csv","fetch-path":"vfs-files/03-describing-a-single-variable/data/country_indicators.csv"},{"name":"04-correlation-pt1/04-association.R","vfs-path":"/home/web_user/04-correlation-pt1/04-association.R","fetch-path":"vfs-files/04-correlation-pt1/04-association.R"},{"name":"04-correlation-pt1/04-correlation.Rmd","vfs-path":"/home/web_user/04-correlation-pt1/04-correlation.Rmd","fetch-path":"vfs-files/04-correlation-pt1/04-correlation.Rmd"},{"name":"04-correlation-pt1/04-scatterplots.Rmd","vfs-path":"/home/web_user/04-correlation-pt1/04-scatterplots.Rmd","fetch-path":"vfs-files/04-correlation-pt1/04-scatterplots.Rmd"},{"name":"04-correlation-pt1/04-variation.Rmd","vfs-path":"/home/web_user/04-correlation-pt1/04-variation.Rmd","fetch-path":"vfs-files/04-correlation-pt1/04-variation.Rmd"},{"name":"04-correlation-pt1/data/country_indicators.csv","vfs-path":"/home/web_user/04-correlation-pt1/data/country_indicators.csv","fetch-path":"vfs-files/04-correlation-pt1/data/country_indicators.csv"},{"name":"05-correlation-pt2/05-correlation-deep.R","vfs-path":"/home/web_user/05-correlation-pt2/05-correlation-deep.R","fetch-path":"vfs-files/05-correlation-pt2/05-correlation-deep.R"},{"name":"05-correlation-pt2/05-ir-examples.Rmd","vfs-path":"/home/web_user/05-correlation-pt2/05-ir-examples.Rmd","fetch-path":"vfs-files/05-correlation-pt2/05-ir-examples.Rmd"},{"name":"05-correlation-pt2/05-nonlinear.Rmd","vfs-path":"/home/web_user/05-correlation-pt2/05-nonlinear.Rmd","fetch-path":"vfs-files/05-correlation-pt2/05-nonlinear.Rmd"},{"name":"05-correlation-pt2/05-outliers.Rmd","vfs-path":"/home/web_user/05-correlation-pt2/05-outliers.Rmd","fetch-path":"vfs-files/05-correlation-pt2/05-outliers.Rmd"},{"name":"05-correlation-pt2/05-regression-preview.Rmd","vfs-path":"/home/web_user/05-correlation-pt2/05-regression-preview.Rmd","fetch-path":"vfs-files/05-correlation-pt2/05-regression-preview.Rmd"},{"name":"05-correlation-pt2/data/country_indicators.csv","vfs-path":"/home/web_user/05-correlation-pt2/data/country_indicators.csv","fetch-path":"vfs-files/05-correlation-pt2/data/country_indicators.csv"},{"name":"06-regression-description-prediction-pt1/06-democracy.Rmd","vfs-path":"/home/web_user/06-regression-description-prediction-pt1/06-democracy.Rmd","fetch-path":"vfs-files/06-regression-description-prediction-pt1/06-democracy.Rmd"},{"name":"06-regression-description-prediction-pt1/06-ols.R","vfs-path":"/home/web_user/06-regression-description-prediction-pt1/06-ols.R","fetch-path":"vfs-files/06-regression-description-prediction-pt1/06-ols.R"},{"name":"06-regression-description-prediction-pt1/06-prediction.Rmd","vfs-path":"/home/web_user/06-regression-description-prediction-pt1/06-prediction.Rmd","fetch-path":"vfs-files/06-regression-description-prediction-pt1/06-prediction.Rmd"},{"name":"06-regression-description-prediction-pt1/06-simple-ols.Rmd","vfs-path":"/home/web_user/06-regression-description-prediction-pt1/06-simple-ols.Rmd","fetch-path":"vfs-files/06-regression-description-prediction-pt1/06-simple-ols.Rmd"},{"name":"06-regression-description-prediction-pt1/data/country_indicators.csv","vfs-path":"/home/web_user/06-regression-description-prediction-pt1/data/country_indicators.csv","fetch-path":"vfs-files/06-regression-description-prediction-pt1/data/country_indicators.csv"},{"name":"07-regression-description-prediction-pt2/07-multiple.Rmd","vfs-path":"/home/web_user/07-regression-description-prediction-pt2/07-multiple.Rmd","fetch-path":"vfs-files/07-regression-description-prediction-pt2/07-multiple.Rmd"},{"name":"07-regression-description-prediction-pt2/07-prediction-vs-causation.Rmd","vfs-path":"/home/web_user/07-regression-description-prediction-pt2/07-prediction-vs-causation.Rmd","fetch-path":"vfs-files/07-regression-description-prediction-pt2/07-prediction-vs-causation.Rmd"},{"name":"07-regression-description-prediction-pt2/07-regression-pt2.R","vfs-path":"/home/web_user/07-regression-description-prediction-pt2/07-regression-pt2.R","fetch-path":"vfs-files/07-regression-description-prediction-pt2/07-regression-pt2.R"},{"name":"07-regression-description-prediction-pt2/07-residuals.Rmd","vfs-path":"/home/web_user/07-regression-description-prediction-pt2/07-residuals.Rmd","fetch-path":"vfs-files/07-regression-description-prediction-pt2/07-residuals.Rmd"},{"name":"07-regression-description-prediction-pt2/data/country_indicators.csv","vfs-path":"/home/web_user/07-regression-description-prediction-pt2/data/country_indicators.csv","fetch-path":"vfs-files/07-regression-description-prediction-pt2/data/country_indicators.csv"},{"name":"09-probability-theory-pt1/09-conditional.Rmd","vfs-path":"/home/web_user/09-probability-theory-pt1/09-conditional.Rmd","fetch-path":"vfs-files/09-probability-theory-pt1/09-conditional.Rmd"},{"name":"09-probability-theory-pt1/09-frequency.Rmd","vfs-path":"/home/web_user/09-probability-theory-pt1/09-frequency.Rmd","fetch-path":"vfs-files/09-probability-theory-pt1/09-frequency.Rmd"},{"name":"09-probability-theory-pt1/09-simulate.Rmd","vfs-path":"/home/web_user/09-probability-theory-pt1/09-simulate.Rmd","fetch-path":"vfs-files/09-probability-theory-pt1/09-simulate.Rmd"},{"name":"09-probability-theory-pt1/data/survey_attitudes.csv","vfs-path":"/home/web_user/09-probability-theory-pt1/data/survey_attitudes.csv","fetch-path":"vfs-files/09-probability-theory-pt1/data/survey_attitudes.csv"},{"name":"10-probability-theory-pt2/10-bernoulli.Rmd","vfs-path":"/home/web_user/10-probability-theory-pt2/10-bernoulli.Rmd","fetch-path":"vfs-files/10-probability-theory-pt2/10-bernoulli.Rmd"},{"name":"10-probability-theory-pt2/10-binomial.Rmd","vfs-path":"/home/web_user/10-probability-theory-pt2/10-binomial.Rmd","fetch-path":"vfs-files/10-probability-theory-pt2/10-binomial.Rmd"},{"name":"10-probability-theory-pt2/10-survey-rv.Rmd","vfs-path":"/home/web_user/10-probability-theory-pt2/10-survey-rv.Rmd","fetch-path":"vfs-files/10-probability-theory-pt2/10-survey-rv.Rmd"},{"name":"10-probability-theory-pt2/data/survey_attitudes.csv","vfs-path":"/home/web_user/10-probability-theory-pt2/data/survey_attitudes.csv","fetch-path":"vfs-files/10-probability-theory-pt2/data/survey_attitudes.csv"},{"name":"11-estimation-and-uncertainty/11-ci.Rmd","vfs-path":"/home/web_user/11-estimation-and-uncertainty/11-ci.Rmd","fetch-path":"vfs-files/11-estimation-and-uncertainty/11-ci.Rmd"},{"name":"11-estimation-and-uncertainty/11-one-sample.Rmd","vfs-path":"/home/web_user/11-estimation-and-uncertainty/11-one-sample.Rmd","fetch-path":"vfs-files/11-estimation-and-uncertainty/11-one-sample.Rmd"},{"name":"11-estimation-and-uncertainty/11-sampling-dist.Rmd","vfs-path":"/home/web_user/11-estimation-and-uncertainty/11-sampling-dist.Rmd","fetch-path":"vfs-files/11-estimation-and-uncertainty/11-sampling-dist.Rmd"},{"name":"11-estimation-and-uncertainty/data/country_indicators.csv","vfs-path":"/home/web_user/11-estimation-and-uncertainty/data/country_indicators.csv","fetch-path":"vfs-files/11-estimation-and-uncertainty/data/country_indicators.csv"},{"name":"11-estimation-and-uncertainty/data/survey_attitudes.csv","vfs-path":"/home/web_user/11-estimation-and-uncertainty/data/survey_attitudes.csv","fetch-path":"vfs-files/11-estimation-and-uncertainty/data/survey_attitudes.csv"},{"name":"12-hypothesis-testing/12-ci-vs-test.Rmd","vfs-path":"/home/web_user/12-hypothesis-testing/12-ci-vs-test.Rmd","fetch-path":"vfs-files/12-hypothesis-testing/12-ci-vs-test.Rmd"},{"name":"12-hypothesis-testing/12-fishing.Rmd","vfs-path":"/home/web_user/12-hypothesis-testing/12-fishing.Rmd","fetch-path":"vfs-files/12-hypothesis-testing/12-fishing.Rmd"},{"name":"12-hypothesis-testing/12-two-groups.Rmd","vfs-path":"/home/web_user/12-hypothesis-testing/12-two-groups.Rmd","fetch-path":"vfs-files/12-hypothesis-testing/12-two-groups.Rmd"},{"name":"12-hypothesis-testing/data/survey_attitudes.csv","vfs-path":"/home/web_user/12-hypothesis-testing/data/survey_attitudes.csv","fetch-path":"vfs-files/12-hypothesis-testing/data/survey_attitudes.csv"},{"name":"13-reversion-to-the-mean/13-countries.Rmd","vfs-path":"/home/web_user/13-reversion-to-the-mean/13-countries.Rmd","fetch-path":"vfs-files/13-reversion-to-the-mean/13-countries.Rmd"},{"name":"13-reversion-to-the-mean/13-select-extremes.Rmd","vfs-path":"/home/web_user/13-reversion-to-the-mean/13-select-extremes.Rmd","fetch-path":"vfs-files/13-reversion-to-the-mean/13-select-extremes.Rmd"},{"name":"13-reversion-to-the-mean/13-simulate-reversion.Rmd","vfs-path":"/home/web_user/13-reversion-to-the-mean/13-simulate-reversion.Rmd","fetch-path":"vfs-files/13-reversion-to-the-mean/13-simulate-reversion.Rmd"},{"name":"13-reversion-to-the-mean/data/country_indicators.csv","vfs-path":"/home/web_user/13-reversion-to-the-mean/data/country_indicators.csv","fetch-path":"vfs-files/13-reversion-to-the-mean/data/country_indicators.csv"},{"name":"13-reversion-to-the-mean/data/survey_attitudes.csv","vfs-path":"/home/web_user/13-reversion-to-the-mean/data/survey_attitudes.csv","fetch-path":"vfs-files/13-reversion-to-the-mean/data/survey_attitudes.csv"},{"name":"14-correlation-and-causation/14-adjust.Rmd","vfs-path":"/home/web_user/14-correlation-and-causation/14-adjust.Rmd","fetch-path":"vfs-files/14-correlation-and-causation/14-adjust.Rmd"},{"name":"14-correlation-and-causation/14-naive-lm.Rmd","vfs-path":"/home/web_user/14-correlation-and-causation/14-naive-lm.Rmd","fetch-path":"vfs-files/14-correlation-and-causation/14-naive-lm.Rmd"},{"name":"14-correlation-and-causation/14-survey-assoc.Rmd","vfs-path":"/home/web_user/14-correlation-and-causation/14-survey-assoc.Rmd","fetch-path":"vfs-files/14-correlation-and-causation/14-survey-assoc.Rmd"},{"name":"14-correlation-and-causation/data/country_indicators.csv","vfs-path":"/home/web_user/14-correlation-and-causation/data/country_indicators.csv","fetch-path":"vfs-files/14-correlation-and-causation/data/country_indicators.csv"},{"name":"14-correlation-and-causation/data/survey_attitudes.csv","vfs-path":"/home/web_user/14-correlation-and-causation/data/survey_attitudes.csv","fetch-path":"vfs-files/14-correlation-and-causation/data/survey_attitudes.csv"},{"name":"16-randomized-experiments-pt1/16-diplomacy-dim.Rmd","vfs-path":"/home/web_user/16-randomized-experiments-pt1/16-diplomacy-dim.Rmd","fetch-path":"vfs-files/16-randomized-experiments-pt1/16-diplomacy-dim.Rmd"},{"name":"16-randomized-experiments-pt1/data/diplomacy_experiment.csv","vfs-path":"/home/web_user/16-randomized-experiments-pt1/data/diplomacy_experiment.csv","fetch-path":"vfs-files/16-randomized-experiments-pt1/data/diplomacy_experiment.csv"},{"name":"17-randomized-experiments-pt2/17-rct-tables.Rmd","vfs-path":"/home/web_user/17-randomized-experiments-pt2/17-rct-tables.Rmd","fetch-path":"vfs-files/17-randomized-experiments-pt2/17-rct-tables.Rmd"},{"name":"17-randomized-experiments-pt2/data/diplomacy_experiment.csv","vfs-path":"/home/web_user/17-randomized-experiments-pt2/data/diplomacy_experiment.csv","fetch-path":"vfs-files/17-randomized-experiments-pt2/data/diplomacy_experiment.csv"},{"name":"18-controlling-for-confounders-pt1/18-confounding-intro.Rmd","vfs-path":"/home/web_user/18-controlling-for-confounders-pt1/18-confounding-intro.Rmd","fetch-path":"vfs-files/18-controlling-for-confounders-pt1/18-confounding-intro.Rmd"},{"name":"18-controlling-for-confounders-pt1/data/aid_observational.csv","vfs-path":"/home/web_user/18-controlling-for-confounders-pt1/data/aid_observational.csv","fetch-path":"vfs-files/18-controlling-for-confounders-pt1/data/aid_observational.csv"},{"name":"18-controlling-for-confounders-pt1/data/country_indicators.csv","vfs-path":"/home/web_user/18-controlling-for-confounders-pt1/data/country_indicators.csv","fetch-path":"vfs-files/18-controlling-for-confounders-pt1/data/country_indicators.csv"},{"name":"19-controlling-for-confounders-pt2/19-aid-adjusted.Rmd","vfs-path":"/home/web_user/19-controlling-for-confounders-pt2/19-aid-adjusted.Rmd","fetch-path":"vfs-files/19-controlling-for-confounders-pt2/19-aid-adjusted.Rmd"},{"name":"19-controlling-for-confounders-pt2/data/aid_observational.csv","vfs-path":"/home/web_user/19-controlling-for-confounders-pt2/data/aid_observational.csv","fetch-path":"vfs-files/19-controlling-for-confounders-pt2/data/aid_observational.csv"},{"name":"20-mechanisms/20-mechanisms.Rmd","vfs-path":"/home/web_user/20-mechanisms/20-mechanisms.Rmd","fetch-path":"vfs-files/20-mechanisms/20-mechanisms.Rmd"},{"name":"20-mechanisms/data/mechanism_diplomatic_contact.csv","vfs-path":"/home/web_user/20-mechanisms/data/mechanism_diplomatic_contact.csv","fetch-path":"vfs-files/20-mechanisms/data/mechanism_diplomatic_contact.csv"}],"mount-point":"/home/web_user","panels":{"editor":true,"terminal":true,"files":true,"plot":true,"environment":true},"auto-open":["/home/web_user/START-HERE.R"],"auto-run":[],"startup-script":"/home/web_user/START-HERE.R","share-links":"open","persist-edits":true};</script>
+  <script>
+  (function () {
+    // webR resolves its engine and package repository URLs inside its worker
+    // (served from webr/v<version>/, or a blob: URL when the engine comes from
+    // the CDN), never against this page. Make every relative one absolute
+    // before the viewer reads the config.
+    var config = window.__VIEWER_CONFIG__;
+    if (!config) return;
+    function absolute(url) {
+      if (typeof url !== "string" || url === "" || /^[a-z][a-z0-9+.-]*:/i.test(url)) return url;
+      return new URL(url, document.baseURI).href;
+    }
+    if (config["engine-base-url"]) config["engine-base-url"] = absolute(config["engine-base-url"]);
+    var packages = config.packages;
+    if (packages) {
+      if (packages["repo-url"]) packages["repo-url"] = absolute(packages["repo-url"]);
+      if (Array.isArray(packages.repos)) packages.repos = packages.repos.map(absolute);
+    }
+  })();
+  </script>
+  <script>
+  (function () {
+    var splash = document.getElementById("webrarian-loading");
+    var root = document.getElementById("root");
+    if (!splash || !root) return;
+    var mounted = false;
+    var failed = false;
+    var obs = null;
+    function dismiss() {
+      if (mounted) return;
+      mounted = true;
+      if (obs) obs.disconnect();
+      splash.removeAttribute("data-state");
+      splash.classList.add("hidden");
+    }
+    function showError(message) {
+      if (mounted) return;
+      splash.setAttribute("data-state", "error");
+      var spinner = splash.querySelector(".webrarian-spinner");
+      if (spinner) spinner.style.display = "none";
+      var status = document.getElementById("webrarian-status");
+      if (!status) return;
+      status.textContent = message + " ";
+      var retry = document.createElement("button");
+      retry.type = "button";
+      retry.textContent = "Reload";
+      retry.addEventListener("click", function () { location.reload(); });
+      status.appendChild(retry);
+    }
+    if (root.childElementCount > 0) { dismiss(); return; }
+    obs = new MutationObserver(function () {
+      if (root.childElementCount > 0) dismiss();
+    });
+    obs.observe(root, { childList: true });
+    // The viewer bundle itself failed to load: terminal.
+    window.addEventListener("error", function (event) {
+      var el = event.target;
+      if (!mounted && el && el.tagName === "SCRIPT" && el.type === "module") {
+        failed = true;
+        obs.disconnect();
+        showError("The viewer (" + (el.getAttribute("src") || "script") + ") could not be loaded.");
+      }
+    }, true);
+    // Soft: say so, but keep observing, so a late mount still takes over.
+    setTimeout(function () {
+      if (!mounted && !failed) {
+        showError("The viewer is taking longer than expected to start. Check your connection, or reload.");
+      }
+    }, 60000);
+  })();
+  </script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("sw.js").catch(function (err) {
+        console.warn("webrarian: service worker registration failed", err);
+      });
+    }
+  </script>
+  <script type="module" src="./exlibris-r.0f36498a.js"></script>
+</body>
+
+</html>

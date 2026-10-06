@@ -1,0 +1,67 @@
+---
+title: "Session 9 — Conditional probability"
+subtitle: "QSS 6.2 | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv") |>
+  mutate(
+    high_support = support_international_cooperation >= 7,
+    high_threat = perceived_security_threat >= 6
+  )
+```
+
+# Unconditional vs conditional
+
+```{r}
+p_high <- mean(survey$high_support)
+p_high
+
+survey |>
+  filter(education == "Postgraduate") |>
+  summarise(p_high_given_postgrad = mean(high_support))
+```
+
+**Interpret:** conditioning on postgraduate education changes the reference group.
+
+# Conditioning on high threat
+
+```{r}
+survey |>
+  filter(high_threat) |>
+  summarise(
+    n = n(),
+    p_high_support = mean(high_support)
+  )
+```
+
+# Check the definition $P(A\cap B)/P(B)$
+
+```{r}
+p_both <- mean(survey$high_support & survey$high_threat)
+p_threat <- mean(survey$high_threat)
+p_both / p_threat
+```
+
+Should match the filtered mean above (up to rounding).
+
+# Independence quick look
+
+```{r}
+p_high * p_threat
+p_both
+```
+
+If these differ, high support and high threat are associated in this sample — **not** a causal claim.

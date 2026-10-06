@@ -1,0 +1,25 @@
+---
+title: "Session 12 — CI and test connection"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv")
+two <- survey |>
+  filter(education %in% c("Bachelor", "Postgraduate"))
+
+tt <- t.test(support_international_cooperation ~ education, data = two)
+tt$p.value
+tt$conf.int
+```
+
+If the 95% CI for the difference excludes 0, the two-sided test rejects at $\alpha=0.05$ (same assumptions). Prefer reporting the CI because it shows **magnitude**.

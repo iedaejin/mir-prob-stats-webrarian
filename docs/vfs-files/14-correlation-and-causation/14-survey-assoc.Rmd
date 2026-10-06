@@ -1,0 +1,36 @@
+---
+title: "Session 14 — Survey association and rival stories"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv")
+
+cor(
+  survey$support_international_cooperation,
+  survey$perceived_security_threat,
+  use = "complete.obs"
+)
+
+ggplot(survey, aes(x = perceived_security_threat,
+                   y = support_international_cooperation)) +
+  geom_point(alpha = 0.35) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Association in survey attitudes",
+    x = "Perceived security threat",
+    y = "Support for international cooperation"
+  )
+```
+
+**Write three rival stories:** confounder (e.g., ideology), reverse causality, selection into survey response. Causal language waits for a design.

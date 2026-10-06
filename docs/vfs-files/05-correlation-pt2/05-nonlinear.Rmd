@@ -1,0 +1,24 @@
+---
+title: "Session 5 — Nonlinearity"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+ci <- read_csv("data/country_indicators.csv")
+```
+
+```{r}
+ci |> summarise(
+  r_level = cor(gdp_per_capita, life_expectancy),
+  r_log = cor(log(gdp_per_capita), life_expectancy)
+)
+
+ggplot(ci, aes(gdp_per_capita, life_expectancy)) +
+  geom_point() + geom_smooth(se = FALSE)
+
+ggplot(ci, aes(log(gdp_per_capita), life_expectancy)) +
+  geom_point() + geom_smooth(method = "lm", se = FALSE)
+```

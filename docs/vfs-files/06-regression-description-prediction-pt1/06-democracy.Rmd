@@ -1,0 +1,24 @@
+---
+title: "Session 6 — Democracy predictor"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+ci <- read_csv("data/country_indicators.csv")
+```
+
+```{r}
+fit_d <- lm(life_expectancy ~ democracy_score, data = ci)
+coef(fit_d)
+summary(fit_d)$r.squared
+
+# Binary X link
+fit_c <- lm(life_expectancy ~ recent_internal_conflict, data = ci)
+coef(fit_c)
+ci |>
+  group_by(recent_internal_conflict) |>
+  summarise(mean_le = mean(life_expectancy), .groups = "drop")
+```

@@ -1,9 +1,8 @@
 .Rhistory
 .RData
-*.html
-!index.html
 .DS_Store
 
-# webrarian
+# webrarian build cache (docs/ is the published Pages copy)
 _site/
 .webrarian/
+

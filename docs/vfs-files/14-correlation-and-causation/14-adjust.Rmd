@@ -1,0 +1,29 @@
+---
+title: "Session 14 — Adjust for GDP"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+world <- read_csv("data/country_indicators.csv")
+
+m_naive <- lm(life_expectancy ~ democracy_score, data = world)
+m_adjusted <- lm(
+  life_expectancy ~ democracy_score + log(gdp_per_capita),
+  data = world
+)
+
+summary(m_naive)$coefficients
+summary(m_adjusted)$coefficients
+```
+
+Compare the democracy coefficient across models. Movement suggests GDP is entangled with the association — **still not proof** that the adjusted coefficient is the causal effect of democracy (omitted variables, reverse causality, measurement, etc. can remain).

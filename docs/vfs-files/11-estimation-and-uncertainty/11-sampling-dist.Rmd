@@ -1,0 +1,35 @@
+---
+title: "Session 11 — Sampling distribution"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv")
+x <- survey$support_international_cooperation
+
+set.seed(11)
+sample_means <- replicate(1000, mean(sample(x, size = 40, replace = TRUE)))
+
+c(mean_of_means = mean(sample_means), se_approx = sd(sample_means))
+
+tibble(sample_mean = sample_means) |>
+  ggplot(aes(x = sample_mean)) +
+  geom_histogram(bins = 30) +
+  labs(
+    title = "Sampling distribution of the mean (n = 40)",
+    x = "Sample mean",
+    y = "Frequency"
+  )
+```
+
+**Interpret:** `sd(sample_means)` approximates the standard error of the mean for $n=40$.

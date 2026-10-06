@@ -1,0 +1,36 @@
+---
+title: "Session 10 — Binomial diplomatic agreements"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+Model: 10 independent opportunities, success probability 0.4.
+
+```{r}
+set.seed(10)
+agreements <- rbinom(10000, size = 10, prob = 0.4)
+c(mean = mean(agreements), var = var(agreements))
+c(theory_mean = 10 * 0.4, theory_var = 10 * 0.4 * 0.6)
+```
+
+```{r}
+tibble(agreements = agreements) |>
+  ggplot(aes(x = agreements)) +
+  geom_histogram(binwidth = 1, boundary = -0.5) +
+  labs(
+    title = "Simulated Binomial(10, 0.4)",
+    x = "Number of agreements",
+    y = "Frequency"
+  )
+```
+
+**Assumptions to say out loud:** fixed $n$, constant $p$, independence.

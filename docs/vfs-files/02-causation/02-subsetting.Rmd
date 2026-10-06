@@ -1,0 +1,67 @@
+---
+title: "Session 2 — Subsetting the resume data (optional stretch)"
+subtitle: "QSS 2.2 | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+> **Optional stretch.** Do this only after `02-resume.Rmd`.  
+> Core Session 2 skill = interpret callback rates and the racial gap — not advanced filtering.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(qss)
+data("resume", package = "qss")
+resume <- as_tibble(resume)
+```
+
+# Filter and select
+
+```{r}
+mean(resume$call[resume$race == "black"])
+
+resumeB <- resume |> filter(race == "black")
+mean(resumeB$call)
+
+resumeBf <- resume |>
+  filter(race == "black", sex == "female") |>
+  select(call, firstname)
+head(resumeBf)
+```
+
+# Gaps by sex
+
+```{r}
+resume |>
+  group_by(sex, race) |>
+  summarise(callback_rate = mean(call), .groups = "drop") |>
+  tidyr::pivot_wider(names_from = race, values_from = callback_rate) |>
+  mutate(white_minus_black = white - black)
+```
+
+# Type variable (race × sex)
+
+```{r}
+resume <- resume |>
+  mutate(
+    type = case_when(
+      race == "black" & sex == "female" ~ "BlackFemale",
+      race == "black" & sex == "male"   ~ "BlackMale",
+      race == "white" & sex == "female" ~ "WhiteFemale",
+      race == "white" & sex == "male"   ~ "WhiteMale"
+    ),
+    type = factor(type)
+  )
+
+resume |>
+  group_by(type) |>
+  summarise(n = n(), callback_rate = mean(call), .groups = "drop")
+```
+
+**Interpret:** Subsetting changes *which rows* enter the mean. Always state the subgroup before interpreting a rate.

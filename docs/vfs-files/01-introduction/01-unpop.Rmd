@@ -1,0 +1,62 @@
+---
+title: "Session 1 — UNpop data file"
+subtitle: "QSS 1.3.7 | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(qss)
+```
+
+# Load and inspect
+
+```{r}
+data("UNpop", package = "qss")
+class(UNpop)
+names(UNpop)
+dim(UNpop)
+summary(UNpop)
+
+UNpop <- as_tibble(UNpop)
+UNpop
+
+UNpop$world.pop
+UNpop[1:3, ]
+```
+
+**Interpret:** Each row is a **year** (unit of analysis). Columns are **variables**.
+
+# Tidyverse summaries
+
+```{r}
+UNpop <- UNpop |>
+  mutate(
+    world.pop.millions = world.pop / 1000,
+    decade_index = row_number()
+  )
+
+UNpop |>
+  summarise(
+    n = n(),
+    mean_pop = mean(world.pop),
+    min_year = min(year),
+    max_year = max(year)
+  )
+
+UNpop |>
+  arrange(year) |>
+  mutate(
+    pop_increase = world.pop - lag(world.pop),
+    percent_increase = 100 * pop_increase / lag(world.pop)
+  )
+```
+
+**Interpret:** These are descriptive summaries of population change over decades — still not causal.

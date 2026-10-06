@@ -1,0 +1,50 @@
+---
+title: "Session 16 — Diplomacy experiment (DIM)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+exp <- read_csv("data/diplomacy_experiment.csv")
+```
+
+## Allocation and balance
+
+```{r}
+exp |> count(treatment_message)
+
+exp |>
+  group_by(treatment_message) |>
+  summarise(
+    mean_age = mean(age),
+    mean_prior = mean(prior_support),
+    n = n(),
+    .groups = "drop"
+  )
+```
+
+## Difference in means
+
+```{r}
+exp |>
+  group_by(treatment_message) |>
+  summarise(
+    mean_y = mean(post_support_diplomatic_cooperation),
+    n = n(),
+    .groups = "drop"
+  )
+```
+
+## OLS (= DIM for binary T)
+
+```{r}
+m <- lm(
+  post_support_diplomatic_cooperation ~ treatment_message,
+  data = exp
+)
+summary(m)
+confint(m)
+```
+
+**Interpret:** What was randomized? How large is the estimated effect on the outcome scale? What does the CI tell you?

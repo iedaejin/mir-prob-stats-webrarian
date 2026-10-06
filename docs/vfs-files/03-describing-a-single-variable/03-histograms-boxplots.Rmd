@@ -1,0 +1,46 @@
+---
+title: "Session 3 — Histograms and boxplots"
+subtitle: "Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+ci <- read_csv("data/country_indicators.csv")
+```
+
+# Histogram
+
+```{r}
+ggplot(ci, aes(life_expectancy)) +
+  geom_histogram(bins = 10, colour = "white") +
+  labs(title = "Life expectancy", x = "Years", y = "Count")
+
+ggplot(ci, aes(gdp_per_capita)) +
+  geom_histogram(bins = 12, colour = "white") +
+  labs(title = "GDP per capita", x = "USD", y = "Count")
+```
+
+# Boxplots
+
+```{r}
+ggplot(ci, aes(x = "", y = life_expectancy)) +
+  geom_boxplot() +
+  labs(x = NULL, y = "Life expectancy")
+
+ggplot(ci, aes(x = factor(recent_internal_conflict),
+               y = life_expectancy)) +
+  geom_boxplot() +
+  labs(x = "Recent internal conflict (0/1)", y = "Life expectancy")
+```
+
+**AI paradox:** If a chatbot “summarizes” the plot without showing it, demand the figure — shape is the point.

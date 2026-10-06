@@ -1,0 +1,27 @@
+---
+title: "Session 4 — Correlation"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+ci <- read_csv("data/country_indicators.csv")
+```
+
+```{r}
+ci |> summarise(
+  r_gdp_le = cor(gdp_per_capita, life_expectancy),
+  r_dem_le = cor(democracy_score, life_expectancy),
+  r_trade_gdp = cor(trade_openness, gdp_per_capita),
+  r_mil_le = cor(military_spending_pct_gdp, life_expectancy),
+  r_un_dem = cor(un_voting_alignment, democracy_score)
+)
+
+ci |>
+  select(gdp_per_capita, life_expectancy, democracy_score,
+         trade_openness, military_spending_pct_gdp) |>
+  cor() |>
+  round(2)
+```
