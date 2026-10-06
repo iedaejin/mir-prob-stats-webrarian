@@ -35,7 +35,9 @@ install.packages(c("rmarkdown", "knitr"))
 install.packages(c("tidyverse", "devtools", "haven"))
 
 # QSS datasets and vignettes (GitHub)
-library(devtools)
+# if you have not installed the `devtools` package
+# install.packages("devtools")
+library("devtools")
 install_github("kosukeimai/qss-package", build_vignettes = TRUE)
 ```
 
