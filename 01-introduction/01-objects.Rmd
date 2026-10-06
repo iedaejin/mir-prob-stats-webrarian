@@ -1,0 +1,30 @@
+---
+title: "Session 1 — Objects"
+subtitle: "QSS 1.3.4 | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Store results in named objects.
+
+```{r}
+result <- 5 + 3
+result
+print(result)
+
+daejin <- "instructor"
+daejin
+class(result)
+class(sqrt)
+```
+
+**Interpret:** `result` is a number; `daejin` is text (`character`). `class()` tells you the type.

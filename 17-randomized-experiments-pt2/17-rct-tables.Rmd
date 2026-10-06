@@ -1,0 +1,28 @@
+---
+title: "Session 17 — Reading RCT tables"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+exp <- read_csv("data/diplomacy_experiment.csv")
+```
+
+```{r}
+m0 <- lm(
+  post_support_diplomatic_cooperation ~ treatment_message,
+  data = exp
+)
+m1 <- lm(
+  post_support_diplomatic_cooperation ~ treatment_message + prior_support,
+  data = exp
+)
+
+summary(m0)
+summary(m1)
+confint(m0)
+confint(m1)
+```
+
+**Discuss:** Why can we include `prior_support` without “creating” identification? What changes in the treatment coefficient, and how would you brief both columns?

@@ -1,0 +1,27 @@
+---
+title: "Session 7 — Multiple predictors"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+ci <- read_csv("data/country_indicators.csv") |>
+  mutate(gdp_10k = gdp_per_capita / 10000)
+```
+
+```{r}
+fit1 <- lm(life_expectancy ~ gdp_10k, data = ci)
+fit2 <- lm(life_expectancy ~ gdp_10k + democracy_score, data = ci)
+
+tibble(
+  model = c("GDP only", "GDP + democracy"),
+  gdp_slope = c(coef(fit1)["gdp_10k"], coef(fit2)["gdp_10k"]),
+  dem_slope = c(NA, coef(fit2)["democracy_score"]),
+  r2 = c(summary(fit1)$r.squared, summary(fit2)$r.squared)
+)
+
+# Associational interpretation only — not causal effects.
+coef(fit2)
+```

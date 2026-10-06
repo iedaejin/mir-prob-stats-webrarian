@@ -1,0 +1,26 @@
+---
+title: "Session 18 — Confounding intro (aid)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+aid <- read_csv("data/aid_observational.csv")
+```
+
+```{r}
+ggplot(aid, aes(aid_per_capita, economic_growth_pct)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(
+    title = "Aid and growth (observational)",
+    x = "Aid per capita",
+    y = "Economic growth (%)"
+  )
+
+m1 <- lm(economic_growth_pct ~ aid_per_capita, data = aid)
+summary(m1)
+```
+
+**Interpret without causal language.** Which confounders might explain the slope? (Session 19 adjusts.)

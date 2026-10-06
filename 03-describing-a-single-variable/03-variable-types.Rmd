@@ -1,0 +1,31 @@
+---
+title: "Session 3 — Variable types"
+subtitle: "Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+ci <- read_csv("data/country_indicators.csv")
+glimpse(ci)
+```
+
+# Categorical summaries
+
+```{r}
+ci |> count(region, sort = TRUE)
+
+ci |> count(recent_internal_conflict) |>
+  mutate(share = n / sum(n))
+```
+
+**Interpret:** Proportions describe composition — not causes.

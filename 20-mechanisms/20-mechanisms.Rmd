@@ -1,0 +1,25 @@
+---
+title: "Session 20 — Mechanisms (diplomatic contact)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+mech <- read_csv("data/mechanism_diplomatic_contact.csv")
+```
+
+```{r}
+m_total <- lm(support_for_cooperation ~ diplomatic_contact, data = mech)
+m_mech <- lm(trust_in_foreign_partner ~ diplomatic_contact, data = mech)
+m_both <- lm(
+  support_for_cooperation ~ diplomatic_contact + trust_in_foreign_partner,
+  data = mech
+)
+
+summary(m_total)
+summary(m_mech)
+summary(m_both)
+```
+
+**Caution:** Shrinkage of the contact coefficient after adding trust is **not** proof of mediation. Write one sentence that reports the pattern without overclaiming.

@@ -1,0 +1,24 @@
+---
+title: "Session 11 — Confidence interval"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv")
+set.seed(11)
+samp <- survey |> slice_sample(n = 40)
+
+t.test(samp$support_international_cooperation)
+t.test(samp$support_international_cooperation)$conf.int
+```
+
+**Interpret carefully:** this interval comes from a procedure with ~95% coverage under random sampling assumptions. It is **not** “95% of respondents score inside the interval.”

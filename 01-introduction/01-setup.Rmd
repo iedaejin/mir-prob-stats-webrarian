@@ -1,0 +1,70 @@
+---
+title: "Session 1 — Software setup"
+subtitle: "Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = TRUE, warning = FALSE)
+```
+
+# Confirm R works
+
+```{r}
+R.version.string
+```
+
+# Packages to knit these `.Rmd` files (run once)
+
+You need **knitr** and **rmarkdown** to compile (Knit) any course `.Rmd` to HTML.  
+Also install course analysis packages (`tidyverse`, `qss`, …).
+
+In RStudio: open this file → click **Knit**, *or* run the chunk below first.
+
+```{r install-rmd, eval=FALSE}
+# Required to compile / Knit R Markdown files
+install.packages(c("rmarkdown", "knitr"))
+
+# Course data-analysis packages
+install.packages(c("tidyverse", "devtools", "haven"))
+
+# QSS datasets and vignettes (GitHub)
+library(devtools)
+install_github("kosukeimai/qss-package", build_vignettes = TRUE)
+```
+
+After installing, restart R (Session → Restart R) if prompted, then continue.
+
+# Load packages (every session)
+
+```{r}
+library(tidyverse)
+library(qss)
+```
+
+# Confirm QSS data are available
+
+```{r}
+data(package = "qss")          # list all datasets
+data("UNpop", package = "qss") # Ch. 1 running example
+head(UNpop)
+glimpse(as_tibble(UNpop))
+```
+
+**Interpret:** What is the unit of analysis? Which columns are variables?
+
+# How to Knit an `.Rmd`
+
+1. Open the `.Rmd` in RStudio.  
+2. Click the **Knit** button (or `Cmd/Ctrl + Shift + K`).  
+3. An HTML file appears in the same folder.
+
+If Knit fails with “there is no package called ‘rmarkdown’”, re-run the install chunk above.
+
+Next: open `01-arithmetic.Rmd` (or see `README.Rmd` for the full order).

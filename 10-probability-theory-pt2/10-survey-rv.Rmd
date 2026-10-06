@@ -1,0 +1,36 @@
+---
+title: "Session 10 — Survey score as a random variable"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv")
+x <- survey$support_international_cooperation
+
+c(mean = mean(x), sd = sd(x), var = var(x))
+mean(x >= 7)
+```
+
+```{r}
+tibble(x = x) |>
+  ggplot(aes(x = x)) +
+  geom_histogram(bins = 15) +
+  labs(
+    title = "Empirical distribution of cooperation support",
+    x = "Support score",
+    y = "Count"
+  )
+```
+
+**Interpret:** mean = center of attitudes; SD = typical person-to-person spread.  
+$P(X\ge 7)$ is an empirical probability in this teaching population.

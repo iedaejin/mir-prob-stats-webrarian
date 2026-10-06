@@ -1,0 +1,34 @@
+---
+title: "Session 12 — Over-comparing demo"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+Demonstrate how many arbitrary splits produce some “significant” hits.
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv") |>
+  mutate(ideo_bin = ntile(ideology_0_left_10_right, 10))
+
+pvals <- map_dbl(1:10, function(b) {
+  d <- survey |> mutate(in_bin = ideo_bin == b)
+  tryCatch(
+    t.test(support_international_cooperation ~ in_bin, data = d)$p.value,
+    error = function(e) NA_real_
+  )
+})
+
+tibble(bin = 1:10, p_value = pvals) |>
+  mutate(star = p_value < 0.05)
+```
+
+**Lesson:** if you only publicize `star == TRUE`, you overstate discovery. Pre-specify primary tests; report the family of comparisons.
