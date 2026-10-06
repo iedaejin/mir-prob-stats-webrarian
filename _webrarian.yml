@@ -34,6 +34,7 @@ files:
   - 18-controlling-for-confounders-pt1/
   - 19-controlling-for-confounders-pt2/
   - 20-mechanisms/
+  - INSTALL-QSS.R
   exclude:
   - '**/*.Rhistory'
   - '**/.DS_Store'
