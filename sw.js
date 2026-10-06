@@ -49,7 +49,7 @@
 
 // Substituted by bind(); unique per build so a redeploy cannot be served from
 // the previous build's cache.
-const BUILD_ID = "20261006233116-7aeba73c";
+const BUILD_ID = "20261006234501-8a1cc38d";
 
 // Cache Storage is keyed per *origin*, so two webrarian sites under one origin
 // (say two GitHub Pages projects on the same user site) share it. Scoping the
