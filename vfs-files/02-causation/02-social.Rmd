@@ -1,0 +1,68 @@
+---
+title: "Session 16 — Social-pressure GOTV experiment (QSS 2.4)"
+subtitle: "QSS causality vignette | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(qss)
+```
+
+Randomized mail messages; outcome = primary turnout in 2006.
+Assigned in **Session 16** (QSS 2.4), not Session 2.
+
+```{r}
+data("social", package = "qss")
+social <- as_tibble(social)
+summary(social)
+```
+
+# Turnout by message
+
+```{r}
+social |>
+  group_by(messages) |>
+  summarise(
+    n = n(),
+    turnout_2006 = mean(primary2006),
+    .groups = "drop"
+  )
+
+control_turnout <- mean(social$primary2006[social$messages == "Control"])
+control_turnout
+```
+
+# Effect relative to Control
+
+```{r}
+social |>
+  group_by(messages) |>
+  summarise(turnout_2006 = mean(primary2006), .groups = "drop") |>
+  mutate(effect_vs_control = turnout_2006 - control_turnout)
+```
+
+**Interpret:** The Neighbors message shows the largest turnout contrast vs Control (~8 pp in this data).
+
+# Balance checks
+
+```{r}
+social <- social |> mutate(age = 2006 - yearofbirth)
+social |>
+  group_by(messages) |>
+  summarise(
+    mean_age = mean(age),
+    mean_primary2004 = mean(primary2004),
+    mean_hhsize = mean(hhsize),
+    .groups = "drop"
+  )
+```
+
+**Interpret:** Similar covariates across arms support the randomized design story.

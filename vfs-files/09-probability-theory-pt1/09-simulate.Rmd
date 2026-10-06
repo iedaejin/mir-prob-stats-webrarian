@@ -1,0 +1,54 @@
+---
+title: "Session 9 — Simulation intuition"
+subtitle: "OpenIntro / QSS spirit | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+Suppose 30% of voters support a diplomatic initiative. Simulate Bernoulli outcomes.
+
+```{r}
+set.seed(9)
+support <- rbinom(1000, size = 1, prob = 0.30)
+mean(support)
+```
+
+# Stability grows with more trials
+
+```{r}
+set.seed(9)
+c(
+  n20 = mean(rbinom(20, 1, 0.30)),
+  n200 = mean(rbinom(200, 1, 0.30)),
+  n20000 = mean(rbinom(20000, 1, 0.30))
+)
+```
+
+**Interpret:** each run is random; larger $n$ usually lands closer to 0.30.
+
+# Many replications of a small sample
+
+```{r}
+set.seed(9)
+many_small <- replicate(500, mean(rbinom(20, 1, 0.30)))
+tibble(est = many_small) |>
+  ggplot(aes(x = est)) +
+  geom_histogram(bins = 20) +
+  labs(
+    title = "Sampling noise with n = 20",
+    x = "Estimated support share",
+    y = "Count"
+  )
+```
+
+Small-$n$ IR “rates” can swing a lot — ask for the sample size behind any probability claim.

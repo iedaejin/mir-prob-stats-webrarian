@@ -1,0 +1,23 @@
+---
+title: "Session 10 — Bernoulli intuition"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+One trial success probability $p=0.35$ (e.g., a randomly selected proposal passes a committee).
+
+```{r}
+set.seed(10)
+x <- rbinom(5000, size = 1, prob = 0.35)
+c(mean = mean(x), var = var(x))
+c(theory_mean = 0.35, theory_var = 0.35 * 0.65)
+```
+
+**Interpret:** simulated mean ≈ $p$; simulated variance ≈ $p(1-p)$.

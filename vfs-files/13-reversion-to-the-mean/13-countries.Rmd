@@ -1,0 +1,26 @@
+---
+title: "Session 13 — Country indicators caution"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+world <- read_csv("data/country_indicators.csv")
+glimpse(world)
+
+world |>
+  summarise(
+    mean_democracy = mean(democracy_score, na.rm = TRUE),
+    mean_life_exp = mean(life_expectancy, na.rm = TRUE)
+  )
+```
+
+This file is a **cross-section**, not two waves. Use it to discuss why “worst countries improved next year” claims need panel data — then return to the simulation for the actual reversion demonstration.

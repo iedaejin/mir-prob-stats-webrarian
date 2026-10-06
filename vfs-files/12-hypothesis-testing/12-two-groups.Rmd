@@ -1,0 +1,32 @@
+---
+title: "Session 12 — Two-group hypothesis test"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv")
+
+two <- survey |>
+  filter(education %in% c("Bachelor", "Postgraduate"))
+
+two |>
+  group_by(education) |>
+  summarise(n = n(), mean_support = mean(support_international_cooperation),
+            .groups = "drop")
+
+tt <- t.test(support_international_cooperation ~ education, data = two)
+tt
+```
+
+**Identify:** group means, estimated difference, CI, p-value.  
+**Then ask:** statistically noticeable? substantively important? causal?

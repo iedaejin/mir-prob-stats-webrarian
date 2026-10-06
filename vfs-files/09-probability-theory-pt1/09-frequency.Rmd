@@ -1,0 +1,51 @@
+---
+title: "Session 9 — Probability as frequency"
+subtitle: "QSS 6.1 | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+Treat the survey as a teaching population. Estimate probabilities as shares.
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv")
+glimpse(survey)
+```
+
+# Event: high support for international cooperation
+
+```{r}
+survey <- survey |>
+  mutate(high_support = support_international_cooperation >= 7)
+
+mean(survey$high_support)
+```
+
+**Interpret:** the share with score ≥ 7 estimates $P(\text{high support})$ in this population.
+
+# Another event: high perceived threat
+
+```{r}
+survey <- survey |>
+  mutate(high_threat = perceived_security_threat >= 6)
+
+mean(survey$high_threat)
+```
+
+# Joint share (intersection)
+
+```{r}
+mean(survey$high_support & survey$high_threat)
+```
+
+Compare later to the product of the two means if you want a quick independence check.

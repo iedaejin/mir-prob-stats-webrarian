@@ -1,0 +1,72 @@
+---
+title: "Session 2 — Resume experiment"
+subtitle: "QSS 2.1 | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(qss)
+```
+
+Randomized race-sounding names on resumes; outcome = callback (0/1).
+
+```{r}
+data("resume", package = "qss")
+
+dim(resume)
+head(resume)
+summary(resume)
+
+resume <- as_tibble(resume)
+```
+
+# Callback rates by race
+
+```{r}
+resume |>
+  count(race, call) |>
+  group_by(race) |>
+  mutate(share = n / sum(n))
+
+resume |>
+  group_by(race) |>
+  summarise(
+    n = n(),
+    callback_rate = mean(call),
+    .groups = "drop"
+  )
+
+mean(resume$call)
+```
+
+# Racial gap
+
+```{r}
+rates <- resume |>
+  group_by(race) |>
+  summarise(callback_rate = mean(call), .groups = "drop")
+
+rates
+rates$callback_rate[rates$race == "white"] -
+  rates$callback_rate[rates$race == "black"]
+```
+
+**Interpret:** About a 3.2 percentage-point higher callback rate for white-sounding names under random assignment of names.
+
+# Potential outcomes (TCWD language)
+
+For each employer contact:
+
+- Treatment: race-sounding name on the resume
+- Potential outcomes: \(Y(\text{black})\), \(Y(\text{white})\)
+- We observe only the callback for the assigned name
+
+The difference in mean(`call`) by race estimates the average effect of race-sounding names under random assignment.

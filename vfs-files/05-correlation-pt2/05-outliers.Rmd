@@ -1,0 +1,27 @@
+---
+title: "Session 5 — Outliers"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+ci <- read_csv("data/country_indicators.csv")
+```
+
+```{r}
+r_all <- cor(ci$gdp_per_capita, ci$life_expectancy)
+
+ci |>
+  mutate(r_without = map_dbl(country, function(ctry) {
+    d <- filter(ci, country != ctry)
+    cor(d$gdp_per_capita, d$life_expectancy)
+  }),
+  delta = r_without - r_all) |>
+  select(country, gdp_per_capita, life_expectancy, r_without, delta) |>
+  arrange(delta) |>
+  head(5)
+```
+
+**Interpret:** Countries with the most negative `delta` pull $r$ upward when included.

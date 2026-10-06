@@ -1,0 +1,27 @@
+---
+title: "Session 19 — Naive vs adjusted aid OLS"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+aid <- read_csv("data/aid_observational.csv")
+```
+
+```{r}
+m1 <- lm(economic_growth_pct ~ aid_per_capita, data = aid)
+m2 <- lm(
+  economic_growth_pct ~ aid_per_capita +
+    baseline_need + conflict_intensity + institutional_quality,
+  data = aid
+)
+
+summary(m1)
+summary(m2)
+
+coef(m1)["aid_per_capita"]
+coef(m2)["aid_per_capita"]
+```
+
+**Write:** What changed? Which assumptions remain? Name one bad-control risk you did *not* include.

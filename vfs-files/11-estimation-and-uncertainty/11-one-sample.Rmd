@@ -1,0 +1,27 @@
+---
+title: "Session 11 — One random sample"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+Treat the CSV as a teaching population.
+
+```{r}
+survey <- read_csv("data/survey_attitudes.csv")
+pop_mean <- mean(survey$support_international_cooperation)
+pop_mean
+
+set.seed(11)
+samp <- survey |> slice_sample(n = 40)
+mean(samp$support_international_cooperation)
+```
+
+**Interpret:** one sample mean is close-ish to the population mean — but not identical. That gap is sampling error.

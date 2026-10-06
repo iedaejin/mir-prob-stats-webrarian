@@ -1,0 +1,26 @@
+---
+title: "Session 6 — Fitted values / prediction"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+ci <- read_csv("data/country_indicators.csv")
+fit <- lm(life_expectancy ~ gdp_per_capita, data = ci)
+```
+
+```{r}
+ci |>
+  mutate(yhat = fitted(fit), resid = resid(fit)) |>
+  select(country, gdp_per_capita, life_expectancy, yhat, resid) |>
+  arrange(desc(abs(resid))) |>
+  head(8)
+
+# Predict at selected GDP levels
+new_x <- tibble(gdp_per_capita = c(5000, 20000, 40000))
+predict(fit, newdata = new_x)
+```
+
+**Caution:** Predictions far outside observed GDP are extrapolations.

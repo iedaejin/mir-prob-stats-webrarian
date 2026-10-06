@@ -1,0 +1,25 @@
+---
+title: "Session 4 — Scatterplots"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+ci <- read_csv("data/country_indicators.csv")
+```
+
+```{r}
+ggplot(ci, aes(gdp_per_capita, life_expectancy)) +
+  geom_point() +
+  labs(title = "GDP and life expectancy",
+       x = "GDP per capita", y = "Life expectancy")
+
+ggplot(ci, aes(democracy_score, life_expectancy)) +
+  geom_point() +
+  labs(title = "Democracy and life expectancy",
+       x = "Democracy score", y = "Life expectancy")
+```
+
+**Interpret:** Direction? Linear form? Outliers? Do *not* say “causes.”

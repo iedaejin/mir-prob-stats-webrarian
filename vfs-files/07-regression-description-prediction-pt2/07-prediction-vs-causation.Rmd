@@ -1,0 +1,27 @@
+---
+title: "Session 7 — Prediction vs causation"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+ci <- read_csv("data/country_indicators.csv") |>
+  mutate(gdp_10k = gdp_per_capita / 10000)
+fit2 <- lm(life_expectancy ~ gdp_10k + democracy_score, data = ci)
+```
+
+```{r}
+# Predictive use: fitted values for observed countries
+ci |>
+  mutate(yhat = fitted(fit2)) |>
+  select(country, gdp_10k, democracy_score, life_expectancy, yhat) |>
+  head(6)
+
+# Hypothetical prediction (NOT a causal forecast of an intervention)
+new <- tibble(gdp_10k = 2.5, democracy_score = 6)
+predict(fit2, newdata = new)
+```
+
+**Write two sentences:** (1) what the prediction is; (2) what it is *not* (an estimated effect of changing GDP/democracy by policy).

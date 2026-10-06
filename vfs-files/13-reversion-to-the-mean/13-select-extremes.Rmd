@@ -1,0 +1,32 @@
+---
+title: "Session 13 — Select on extremes"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+```{r}
+set.seed(321)
+n <- 500
+stable_support <- rnorm(n, 50, 10)
+sim <- tibble(
+  wave1 = stable_support + rnorm(n, 0, 8),
+  wave2 = stable_support + rnorm(n, 0, 8)
+)
+
+extreme_high <- sim |> filter(wave1 >= quantile(wave1, 0.90))
+extreme_low  <- sim |> filter(wave1 <= quantile(wave1, 0.10))
+
+extreme_high |> summarise(mean_wave1 = mean(wave1), mean_wave2 = mean(wave2))
+extreme_low  |> summarise(mean_wave1 = mean(wave1), mean_wave2 = mean(wave2))
+```
+
+**Interpret:** top group’s wave-2 mean is usually lower; bottom group’s wave-2 mean is usually higher — with **zero** causal program.

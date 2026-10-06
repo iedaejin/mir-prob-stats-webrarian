@@ -1,0 +1,32 @@
+---
+title: "Session 1 — A simple function"
+subtitle: "QSS 1.3.6 | Probability and Statistics (MIR)"
+author: "Prof. Dae-Jin Lee (daelee@faculty.ie.edu)"
+date: "Fall 2026"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r}
+world.pop <- c(2525779, 3026003, 3691173, 4449049, 5320817, 6127700, 6916183)
+
+my.summary <- function(x) {
+  s.out <- sum(x)
+  l.out <- length(x)
+  m.out <- s.out / l.out
+  out <- c(s.out, l.out, m.out)
+  names(out) <- c("sum", "length", "mean")
+  return(out)
+}
+my.summary(1:10)
+my.summary(world.pop)
+```
+
+**Interpret:** The function returns sum, length, and mean. Confirm the mean matches `mean(world.pop)`.
